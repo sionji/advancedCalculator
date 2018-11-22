@@ -10,6 +10,29 @@
  postfix 변환 과정에서 2자리 이상의 연산을 구분할 수 없으므로 1자리 연산만 지원합니다.  
  또한 입력받는 숫자는 음수를 입력받을 수 없습니다. (계산결과는 음수표시가 가능합니다.)  
  
+## main 함수
+```
+void main()
+{
+	char infix[100];
+	char* postfix;
+	int result=0;
+	StackHead* pStack = CreateStack();
+
+	printf("한자릿수를 계산하는 고급계산기 입니다.\n");
+	printf("수식을 공백없이 입력하십시오 > ");
+	scanf_s("%s", infix,sizeof(char)*100);
+
+	postfix = fromInfix_ToPostfix(infix, pStack);
+	result = calculate_Postfix(postfix, pStack);
+	printf("결과는 %d 입니다 \n", result);
+
+	system("pause");
+	return;
+}
+```
+ 입력받는 수식은 최대 100byte 크기를 지원합니다.  
+
 ## getPriority 함수  
  ```
  int getPriority(char input) {
